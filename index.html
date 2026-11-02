@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Onda Mental — sonidos binaurales para experimentos mentales</title>
+  <meta name="description" content="Laboratorio binaural gratis con control por oído, barrido, pulso, ruido y modo estudio. Protocolos con referencias, sesiones de 10 minutos o menos y bitácora exportable.">
+  <meta name="theme-color" content="#05070d">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:title" content="Onda Mental — laboratorio binaural">
+  <meta property="og:description" content="Protocolos de ondas cerebrales con referencias científicas, sesiones de máximo 10 minutos y bitácora de experiencias. Gratis, sin registro y sin servidores.">
+  <meta property="og:type" content="website">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/icon.svg">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23070b14'/%3E%3Cpath d='M4 16c3-7 5-7 8 0s5 7 8 0 5-7 8 0' fill='none' stroke='%235eead4' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/styles.css?v=3">
+</head>
+<body id="top">
+  <a class="skip-link" href="#crear">Saltar al laboratorio</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Onda Mental, inicio">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" focusable="false">
+            <path d="M3 16c3.2-7.5 5.4-7.5 8.6 0s5.4 7.5 8.6 0 5.4-7.5 8.6 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <strong>Onda Mental</strong>
+          <small>laboratorio binaural</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
+        <span></span><span></span><span></span>
+        <span class="sr-only">Abrir menú</span>
+      </button>
+
+      <nav class="nav" id="navMenu" aria-label="Secciones">
+        <a href="#crear">Crear</a>
+        <a href="#laboratorio">Laboratorio</a>
+        <a href="#protocolos">Protocolos</a>
+        <a href="#evidencia">Evidencia</a>
+        <a href="#estudio">Estudio</a>
+        <a href="#bitacora">Bitácora</a>
+        <a href="#guia">Guía</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="pulse-dot" aria-hidden="true"></span> Gratis · sin registro · funciona sin conexión</p>
+        <h1>Sonidos binaurales para <em>experimentos mentales</em>.</h1>
+        <p class="lede">
+          Describe qué quieres sentir. Onda Mental elige un protocolo de ondas cerebrales
+          con referencias publicadas, lo reproduce en tus auriculares durante 10 minutos o menos
+          y convierte tu experiencia en una entrada de bitácora.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#crear">Diseñar mi sesión</a>
+          <a class="btn btn-ghost" href="#protocolos">Explorar protocolos</a>
+        </div>
+        <ul class="hero-facts">
+          <li><strong>7 + 9</strong><span>protocolos y presets</span></li>
+          <li><strong>≤ 10 min</strong><span>por sesión</span></li>
+          <li><strong>0 €</strong><span>sin cuentas ni nube</span></li>
+        </ul>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="wave-card">
+          <div class="wave-card-head">
+            <span class="tag">alpha · 10 Hz</span>
+            <span class="tag tag-dim">batido binaural</span>
+          </div>
+          <svg id="heroWave" class="wave-svg" viewBox="0 0 320 190" preserveAspectRatio="none"></svg>
+          <div class="wave-legend">
+            <span><i class="swatch swatch-l"></i> oído izquierdo · 200 Hz</span>
+            <span><i class="swatch swatch-r"></i> oído derecho · 210 Hz</span>
+          </div>
+        </div>
+        <p class="hero-note">La diferencia de 10 Hz es lo que tu cerebro percibe como «pulso».</p>
+      </div>
+    </section>
+
+    <!-- ================= BUILDER ================= -->
+    <section class="section wrap" id="crear">
+      <div class="section-head">
+        <p class="eyebrow">Paso 1 · Intención</p>
+        <h2>¿Qué quieres experimentar?</h2>
+        <p>Escribe tu objetivo con tus palabras. No hay respuestas correctas: el laboratorio busca la banda y el protocolo que mejor encajan.</p>
+      </div>
+
+      <div class="builder">
+        <div class="card builder-form">
+          <label class="field-label" for="goal">Tu intención</label>
+          <textarea id="goal" rows="4" maxlength="400"
+            placeholder="Ej.: quiero soltar la tensión antes de una entrevista y sentir la cabeza más despejada…"></textarea>
+
+          <div class="chips" id="chips" aria-label="Intenciones frecuentes"></div>
+
+          <div class="builder-actions">
+            <button class="btn btn-primary" id="btnGenerate" type="button">Generar protocolo</button>
+            <button class="btn btn-ghost" id="btnRandom" type="button">Sorpréndeme</button>
+          </div>
+          <p class="hint" id="matchHint" role="status" aria-live="polite">
+            Sin prisa: puedes escribir una frase o solo una palabra.
+          </p>
+        </div>
+
+        <div class="card result" id="result" aria-live="polite">
+          <div class="result-empty" id="resultEmpty">
+            <span class="result-empty-mark" aria-hidden="true">◎</span>
+            <h3>Tu protocolo aparecerá aquí</h3>
+            <p>Incluirá la banda, la frecuencia del batido, la portadora, la duración, el motivo científico y un experimento mental guiado.</p>
+          </div>
+
+          <div class="result-body" id="resultBody" hidden>
+            <div class="result-top">
+              <div>
+                <h3 id="rName">—</h3>
+                <p id="rTagline" class="result-tagline"></p>
+              </div>
+              <span class="badge" id="rBadge">—</span>
+            </div>
+
+            <dl class="param-grid">
+              <div><dt>Banda</dt><dd id="rBand">—</dd></div>
+              <div><dt>Batido</dt><dd id="rBeat">—</dd></div>
+              <div><dt>Portadora</dt><dd id="rCarrier">—</dd></div>
+              <div><dt>Duración</dt><dd id="rDuration">—</dd></div>
+            </dl>
+
+            <div class="result-block">
+              <h4>Por qué este protocolo</h4>
+              <p id="rWhy"></p>
+            </div>
+
+            <div class="result-block">
+              <h4>Qué dice la evidencia</h4>
+              <p id="rSummary"></p>
+              <p class="refs" id="rRefs"></p>
+            </div>
+
+            <details class="experiment" id="rExperimentBox">
+              <summary>Experimento mental de esta sesión</summary>
+              <div id="rExperiment"></div>
+            </details>
+
+            <details class="advanced" id="advanced">
+              <summary>Ajustes rápidos <span class="hint-inline">(o abre el laboratorio completo)</span></summary>
+              <div class="advanced-grid">
+                <div class="control">
+                  <label for="advBeat">Frecuencia del batido <output id="advBeatVal">10.0 Hz</output></label>
+                  <input type="range" id="advBeat" min="1" max="40" step="0.1" value="10">
+                  <p class="control-hint" id="advBandHint">Banda alpha</p>
+                </div>
+                <div class="control">
+                  <label for="advCarrier">Portadora <output id="advCarrierVal">200 Hz</output></label>
+                  <input type="range" id="advCarrier" min="100" max="500" step="5" value="200">
+                  <p class="control-hint">Baja = batido más claro.</p>
+                </div>
+                <div class="control">
+                  <label for="advDuration">Duración <output id="advDurationVal">8:00 min</output></label>
+                  <input type="range" id="advDuration" min="1" max="10" step="1" value="8">
+                  <p class="control-hint">Máximo del laboratorio: 10 min.</p>
+                </div>
+                <div class="control">
+                  <label for="advVolume">Volumen de referencia <output id="advVolumeVal">28 %</output></label>
+                  <input type="range" id="advVolume" min="5" max="60" step="1" value="28">
+                  <p class="control-hint">Siempre empieza bajo.</p>
+                </div>
+                <div class="control control-inline">
+                  <label class="switch">
+                    <input type="checkbox" id="advNoise" checked>
+                    <span class="switch-ui" aria-hidden="true"></span>
+                    <span>Colchón de ruido rosa</span>
+                  </label>
+                </div>
+              </div>
+            </details>
+
+            <div class="lab-link">
+              <a class="btn btn-ghost btn-sm" href="#laboratorio">Abrir el laboratorio de ondas</a>
+              <span class="hint-inline">Frecuencias por oído, barrido, pulso, ruido y balance.</span>
+            </div>
+
+            <div class="start-row">
+              <div class="control control-mood">
+                <label for="moodBefore">¿Cómo te sientes ahora? <output id="moodBeforeVal">5</output>/10</label>
+                <input type="range" id="moodBefore" min="0" max="10" step="1" value="5">
+              </div>
+              <button class="btn btn-primary btn-start" id="btnStart" type="button">Iniciar sesión</button>
+            </div>
+
+            <p class="hint hint-warn">
+              Usa auriculares estéreo. Volumen bajo. Nunca mientras conduces o si tienes epilepsia,
+              tinnitus o un dispositivo médico sin consultar.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= LABORATORIO ================= -->
+    <section class="section wrap" id="laboratorio">
+      <div class="section-head">
+        <p class="eyebrow">Paso 2 · Control fino</p>
+        <h2>Laboratorio de ondas</h2>
+        <p>Controla cada oído por separado, la forma de onda, el barrido, el pulso y el ruido. Todo queda registrado para que puedas repetir o comparar condiciones.</p>
+      </div>
+
+      <div class="lab">
+        <div class="card lab-controls">
+          <div class="lab-bar">
+            <label class="lab-preset-label" for="labPreset">Punto de partida</label>
+            <select id="labPreset">
+              <option value="">Personalizado…</option>
+            </select>
+            <p class="hint" id="labPresetHint">Elige un preset o mueve los controles.</p>
+          </div>
+
+          <div class="lab-block">
+            <h3>Frecuencias</h3>
+            <div class="lab-grid">
+              <div class="control">
+                <label for="labCarrier">Portadora / oído izquierdo <output id="labCarrierVal">200 Hz</output></label>
+                <input type="range" id="labCarrier" min="80" max="600" step="1" value="200">
+              </div>
+              <div class="control" id="labBeatWrap">
+                <label for="labBeat">Batido (diferencia) <output id="labBeatVal">10.0 Hz</output></label>
+                <input type="range" id="labBeat" min="0" max="40" step="0.1" value="10">
+              </div>
+              <div class="control" id="labRightWrap" hidden>
+                <label for="labRight">Oído derecho <output id="labRightVal">210 Hz</output></label>
+                <input type="range" id="labRight" min="80" max="600" step="1" value="210">
+              </div>
+              <div class="control control-inline">
+                <label class="switch">
+                  <input type="checkbox" id="labIndependent">
+                  <span class="switch-ui" aria-hidden="true"></span>
+                  <span>Fijar el oído derecho por separado</span>
+                </label>
+              </div>
+            </div>
+            <p class="control-hint" id="labFreqHint">Izquierda 200 Hz · derecha 210 Hz · batido 10.0 Hz (alpha).</p>
+          </div>
+
+          <div class="lab-block">
+            <h3>Movimiento</h3>
+            <div class="lab-grid">
+              <div class="control control-inline">
+                <label class="switch">
+                  <input type="checkbox" id="labSweep">
+                  <span class="switch-ui" aria-hidden="true"></span>
+                  <span>Barrido durante la sesión</span>
+                </label>
+              </div>
+              <div class="control" id="labCarrierEndWrap" hidden>
+                <label for="labCarrierEnd">Portadora final <output id="labCarrierEndVal">200 Hz</output></label>
+                <input type="range" id="labCarrierEnd" min="80" max="600" step="1" value="200">
+              </div>
+              <div class="control" id="labBeatEndWrap" hidden>
+                <label for="labBeatEnd">Batido final <output id="labBeatEndVal">10.0 Hz</output></label>
+                <input type="range" id="labBeatEnd" min="0" max="40" step="0.1" value="10">
+              </div>
+              <div class="control" id="labRightEndWrap" hidden>
+                <label for="labRightEnd">Oído derecho final <output id="labRightEndVal">210 Hz</output></label>
+                <input type="range" id="labRightEnd" min="80" max="600" step="1" value="210">
+              </div>
+            </div>
+            <p class="control-hint">El barrido interpola linealmente entre el inicio y el final.</p>
+          </div>
+
+          <div class="lab-block">
+            <h3>Timbre y modulación</h3>
+            <div class="lab-grid">
+              <div class="control">
+                <label for="labWave">Forma de onda <output id="labWaveVal">Seno</output></label>
+                <select id="labWave">
+                  <option value="sine">Seno (recomendado para batidos)</option>
+                  <option value="triangle">Triángulo</option>
+                  <option value="square">Cuadrada</option>
+                  <option value="sawtooth">Diente de sierra</option>
+                </select>
+              </div>
+              <div class="control">
+                <label for="labBalance">Balance izquierda ↔ derecha <output id="labBalanceVal">Centro</output></label>
+                <input type="range" id="labBalance" min="-100" max="100" step="1" value="0">
+              </div>
+              <div class="control">
+                <label for="labAmRate">Pulso (AM) <output id="labAmRateVal">4.0 Hz</output></label>
+                <input type="range" id="labAmRate" min="0.5" max="40" step="0.5" value="4">
+              </div>
+              <div class="control">
+                <label for="labAmDepth">Profundidad del pulso <output id="labAmDepthVal">50 %</output></label>
+                <input type="range" id="labAmDepth" min="0" max="100" step="1" value="50">
+              </div>
+              <div class="control control-inline">
+                <label class="switch">
+                  <input type="checkbox" id="labAmEnabled">
+                  <span class="switch-ui" aria-hidden="true"></span>
+                  <span>Activar pulso de amplitud (isocrónico)</span>
+                </label>
+              </div>
+            </div>
+            <p class="control-hint">El pulso no es un batido binaural: modula el volumen. Úsalo como condición aparte.</p>
+          </div>
+
+          <div class="lab-block">
+            <h3>Ruido, duración y volumen</h3>
+            <div class="lab-grid">
+              <div class="control">
+                <label for="labNoiseType">Colchón de ruido <output id="labNoiseTypeVal">Rosa</output></label>
+                <select id="labNoiseType">
+                  <option value="off">Sin ruido</option>
+                  <option value="pink">Rosa</option>
+                  <option value="brown">Marrón</option>
+                  <option value="white">Blanco</option>
+                </select>
+              </div>
+              <div class="control">
+                <label for="labNoiseLevel">Nivel de ruido <output id="labNoiseLevelVal">5 %</output></label>
+                <input type="range" id="labNoiseLevel" min="0" max="30" step="1" value="5">
+              </div>
+              <div class="control">
+                <label for="labDuration">Duración <output id="labDurationVal">8:00</output></label>
+                <input type="range" id="labDuration" min="1" max="10" step="1" value="8">
+              </div>
+              <div class="control">
+                <label for="labVolume">Volumen de referencia <output id="labVolumeVal">28 %</output></label>
+                <input type="range" id="labVolume" min="5" max="60" step="1" value="28">
+              </div>
+              <div class="control">
+                <label for="labFadeIn">Fundido de entrada <output id="labFadeInVal">10 s</output></label>
+                <input type="range" id="labFadeIn" min="0" max="30" step="1" value="10">
+              </div>
+              <div class="control">
+                <label for="labFadeOut">Fundido de salida <output id="labFadeOutVal">12 s</output></label>
+                <input type="range" id="labFadeOut" min="0" max="30" step="1" value="12">
+              </div>
+            </div>
+          </div>
+
+          <div class="lab-actions">
+            <button class="btn btn-primary" id="labStart" type="button">Iniciar esta onda</button>
+            <button class="btn btn-ghost" id="labSave" type="button">Guardar ajuste</button>
+            <button class="btn btn-ghost" id="labExport" type="button">Exportar JSON</button>
+            <button class="btn btn-ghost" id="labImportBtn" type="button">Importar JSON</button>
+            <input type="file" id="labImport" accept="application/json,.json" hidden>
+            <button class="btn btn-ghost" id="labReset" type="button">Restablecer</button>
+          </div>
+
+          <div class="lab-saved-row">
+            <label for="labSaved">Mis ajustes</label>
+            <select id="labSaved"><option value="">—</option></select>
+            <button class="btn btn-ghost btn-sm" id="labLoadSaved" type="button">Cargar</button>
+            <button class="btn btn-ghost btn-sm btn-danger" id="labDeleteSaved" type="button">Eliminar</button>
+          </div>
+
+          <p class="hint hint-warn">Auriculares estéreo · volumen bajo · máximo 10 min. No uses el pulso ni el barrido si el movimiento te marea.</p>
+        </div>
+
+        <aside class="card lab-readout" aria-live="polite">
+          <p class="eyebrow">Ahora mismo</p>
+          <h3 id="labReadName">Alpha 10 Hz</h3>
+          <p class="lab-big" id="labReadBeat">10.0 Hz</p>
+          <p class="lab-sub" id="labReadBand">banda alpha</p>
+
+          <dl class="param-grid lab-param-grid">
+            <div><dt>Izquierda</dt><dd id="labReadLeft">200 Hz</dd></div>
+            <div><dt>Derecha</dt><dd id="labReadRight">210 Hz</dd></div>
+            <div><dt>Duración</dt><dd id="labReadDuration">8:00</dd></div>
+            <div><dt>Forma</dt><dd id="labReadWave">Seno</dd></div>
+          </dl>
+
+          <div class="lab-read-detail">
+            <p><span>Barrido</span><strong id="labReadSweep">No</strong></p>
+            <p><span>Pulso AM</span><strong id="labReadAm">No</strong></p>
+            <p><span>Ruido</span><strong id="labReadNoise">Rosa · 5 %</strong></p>
+            <p><span>Balance</span><strong id="labReadBalance">Centro</strong></p>
+          </div>
+
+          <p class="hint" id="labReadHint">Un batido de 10 Hz se asocia a relajación despierta; la evidencia es modesta.</p>
+
+          <div class="lab-wave-wrap" aria-hidden="true">
+            <svg id="labWaveSvg" viewBox="0 0 320 100" preserveAspectRatio="none"></svg>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ================= PROTOCOLOS ================= -->
+    <section class="section wrap" id="protocolos">
+      <div class="section-head">
+        <p class="eyebrow">Biblioteca</p>
+        <h2>Siete protocolos, siete experimentos</h2>
+        <p>Cada uno cabe en 10 minutos o menos y declara su nivel de evidencia. Ninguno es un tratamiento médico.</p>
+      </div>
+      <div class="protocol-grid" id="protocolGrid"></div>
+    </section>
+
+    <!-- ================= EVIDENCIA ================= -->
+    <section class="section wrap" id="evidencia">
+      <div class="section-head">
+        <p class="eyebrow">Transparencia</p>
+        <h2>Qué dice la ciencia (y qué no)</h2>
+        <p>Los batidos binaurales son un fenómeno auditivo real. Los beneficios psicológicos son modestos, variables y todavía objeto de debate.</p>
+      </div>
+
+      <div class="callout">
+        <strong>Lectura honesta:</strong> hay meta-análisis que reportan efectos pequeños sobre ansiedad,
+        memoria y atención, pero con alta heterogeneidad entre estudios. Escuchar un tono no «reprograma»
+        el cerebro: puede acompañar un ritual de relajación o de foco. Trátalo como un experimento personal
+        con registro, no como una terapia.
+      </div>
+
+      <div class="band-grid" id="bandGrid"></div>
+
+      <div class="table-wrap">
+        <table class="studies">
+          <caption>Estudios de referencia citados en los protocolos</caption>
+          <thead>
+            <tr><th scope="col">Estudio</th><th scope="col">Qué exploró</th><th scope="col">Hallazgo principal</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Oster (1973)</td>
+              <td>Percepción de batidos binaurales</td>
+              <td>Describe el batido como un fenómeno del sistema auditivo; base fisiológica del método.</td>
+            </tr>
+            <tr>
+              <td>Lane et al. (1998)</td>
+              <td>Vigilancia y estado de ánimo</td>
+              <td>El batido beta (16 Hz) se asoció a mayor vigilancia; theta/delta, a menor.</td>
+            </tr>
+            <tr>
+              <td>Reedijk et al. (2013)</td>
+              <td>Creatividad (pensamiento divergente)</td>
+              <td>Un batido alpha de 10 Hz mejoró la fluidez de ideas frente a gamma y control.</td>
+            </tr>
+            <tr>
+              <td>Beauchene et al. (2016)</td>
+              <td>Memoria de trabajo visoespacial</td>
+              <td>40 Hz se asoció a mejor rendimiento y cambios de conectividad cortical.</td>
+            </tr>
+            <tr>
+              <td>Jirakittayakorn &amp; Wongsawat (2017)</td>
+              <td>Actividad theta frontal</td>
+              <td>Un batido de 6 Hz aumentó theta frontal media en EEG.</td>
+            </tr>
+            <tr>
+              <td>Garcia-Argibay et al. (2019)</td>
+              <td>Meta-análisis: cognición, ansiedad, dolor</td>
+              <td>Efectos pequeños pero significativos, con heterogeneidad alta.</td>
+            </tr>
+            <tr>
+              <td>Ingendoh et al. (2023)</td>
+              <td>Revisión sistemática de entrainment</td>
+              <td>La evidencia de sincronización cerebral es inconsistente; pide mejores diseños.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="hint">
+        Referencias completas en el código del sitio (<code>assets/protocols.js</code>) y enlazadas desde cada protocolo.
+        Este sitio no sustituye atención médica ni psicológica.
+      </p>
+    </section>
+
+    <!-- ================= MARCO Y MÉTODO ================= -->
+    <section class="section wrap" id="estudio">
+      <div class="section-head">
+        <p class="eyebrow">Marco y método</p>
+        <h2>Investigar sin engañarte</h2>
+        <p>Una capa amplia: una hipótesis histórica, un método sencillo y un registro que incluye también lo que no funcionó.</p>
+      </div>
+
+      <div class="two-col theory-study">
+        <div class="card theory-card">
+          <span class="tag">Marco teórico</span>
+          <h3 id="theoryTitle">La Teoría Sintérgica</h3>
+          <p id="theoryIntro"></p>
+          <div id="theoryBody"></div>
+          <p class="callout callout-warn" id="theoryCaveat"></p>
+          <ul class="check-list check-list-soft" id="theoryPrinciples"></ul>
+          <p class="refs" id="theoryRefs"></p>
+        </div>
+
+        <div class="card study-card">
+          <span class="tag">Modo estudio</span>
+          <h3>Registro para varias personas</h3>
+          <p>Activa este modo para añadir un código de participante, un grupo y medidas antes/después. No se envía nada: todo vive en este navegador y solo sale si tú exportas.</p>
+
+          <label class="switch">
+            <input type="checkbox" id="studyEnabled">
+            <span class="switch-ui" aria-hidden="true"></span>
+            <span>Activar modo estudio en las próximas sesiones</span>
+          </label>
+
+          <div id="studyFields" hidden>
+            <div class="study-grid">
+              <div class="control">
+                <label for="studyCode">Código de participante</label>
+                <input type="text" id="studyCode" maxlength="24" placeholder="P-001" autocomplete="off">
+                <p class="control-hint">Usa un código, nunca un nombre real.</p>
+              </div>
+              <div class="control">
+                <label for="studyGroup">Grupo / condición</label>
+                <input type="text" id="studyGroup" maxlength="40" placeholder="alpha, control, sesión 1…" autocomplete="off">
+              </div>
+            </div>
+
+            <h4 class="study-subtitle">Antes de la sesión</h4>
+            <div class="measure-grid" id="preMeasures"></div>
+
+            <label class="switch switch-small">
+              <input type="checkbox" id="studyConsent">
+              <span class="switch-ui" aria-hidden="true"></span>
+              <span>Confirmo que participo voluntariamente y que puedo detenerme en cualquier momento.</span>
+            </label>
+
+            <p class="hint hint-warn">No uses este modo para diagnosticar, tratar ni inducir estados en terceros. Si trabajas con otras personas, pide consentimiento informado y evita población vulnerable sin supervisión.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card research-guide">
+        <h3>Cómo convertir esto en una investigación mínimamente honesta</h3>
+        <div class="research-steps">
+          <div>
+            <strong>1 · Pregunta</strong>
+            <p>Escribe una pregunta concreta y medible: «¿el batido de 10 Hz cambia mi relajación frente a una condición sin batido?». Evita «¿me activa el subconsciente?»: no es contrastable.</p>
+          </div>
+          <div>
+            <strong>2 · Compara</strong>
+            <p>Usa al menos dos condiciones: la onda que quieres probar y un control sin batido (o con pulso isocrónico). Alterna el orden entre sesiones para reducir el efecto de la expectativa.</p>
+          </div>
+          <div>
+            <strong>3 · Repite</strong>
+            <p>Una sesión no demuestra nada. Haz varias por condición, en días distintos, a la misma hora si puedes. Anota sueño, cafeína y estrés: son variables que contaminan.</p>
+          </div>
+          <div>
+            <strong>4 · Mide y registra</strong>
+            <p>Usa las medidas 0–10 del modo estudio antes y después. Guarda también los resultados nulos y las sesiones interrumpidas. Exporta el CSV y analiza las diferencias con cautela.</p>
+          </div>
+          <div>
+            <strong>5 · Interpreta con humildad</strong>
+            <p>Con pocas personas y autoinforme no puedes demostrar causalidad ni generalizar. Habla de «lo que observé», no de «lo que prueba». Si hay malestar, detén el estudio.</p>
+          </div>
+          <div>
+            <strong>6 · Cuida a las personas</strong>
+            <p>Consentimiento informado, posibilidad de retirarse, sin nombres reales, sin presión y sin promesas terapéuticas. No uses a menores ni a personas en crisis sin supervisión profesional.</p>
+          </div>
+        </div>
+        <p class="hint">El modo estudio no convierte esto en un ensayo clínico. Es una herramienta de exploración y autoobservación, no un dispositivo médico ni una prueba de la Teoría Sintérgica.</p>
+      </div>
+    </section>
+
+    <!-- ================= BITÁCORA ================= -->
+    <section class="section wrap" id="bitacora">
+      <div class="section-head">
+        <p class="eyebrow">Paso 3 · Observación</p>
+        <h2>Tu bitácora de laboratorio</h2>
+        <p>Todo se guarda solo en este navegador. Sin cuentas, sin nube, sin telemetría.</p>
+      </div>
+
+      <div class="stats" id="stats">
+        <div class="stat"><span class="stat-label">Sesiones</span><strong id="statSessions">0</strong></div>
+        <div class="stat"><span class="stat-label">Minutos escuchados</span><strong id="statMinutes">0</strong></div>
+        <div class="stat"><span class="stat-label">Cambio medio de ánimo</span><strong id="statDelta">—</strong></div>
+        <div class="stat"><span class="stat-label">Protocolo con mejor cambio</span><strong id="statBest">—</strong></div>
+        <div class="stat"><span class="stat-label">Sesiones de estudio</span><strong id="statStudySessions">0</strong></div>
+        <div class="stat"><span class="stat-label">Participantes</span><strong id="statParticipants">0</strong></div>
+      </div>
+
+      <div class="journal-toolbar">
+        <button class="btn btn-ghost btn-sm" id="btnExportCsv" type="button">Exportar CSV</button>
+        <button class="btn btn-ghost btn-sm" id="btnExportJson" type="button">Exportar JSON</button>
+        <button class="btn btn-ghost btn-sm btn-danger" id="btnClear" type="button">Borrar todo</button>
+      </div>
+
+      <div class="journal-list" id="journalList"></div>
+    </section>
+
+    <!-- ================= GUÍA ================= -->
+    <section class="section wrap" id="guia">
+      <div class="section-head">
+        <p class="eyebrow">Manual</p>
+        <h2>Cómo usarlo sin hacerte daño</h2>
+      </div>
+
+      <div class="guide-grid">
+        <div class="card guide-card">
+          <h3>1 · Auriculares, no altavoces</h3>
+          <p>El batido binaural existe porque cada oído recibe una frecuencia distinta. Con altavoces los dos tonos se mezclan en el aire y el efecto desaparece.</p>
+        </div>
+        <div class="card guide-card">
+          <h3>2 · Volumen bajo y estable</h3>
+          <p>El objetivo no es «oír fuerte», es percibir el pulso. El sitio aplica fundidos de entrada y salida y limita la ganancia máxima. Si dudas, baja.</p>
+        </div>
+        <div class="card guide-card">
+          <h3>3 · Una sola intención</h3>
+          <p>Elige un objetivo por sesión. Cambiar de intención a mitad de camino convierte el experimento en ruido. Diez minutos bien usados valen más que una hora distraída.</p>
+        </div>
+        <div class="card guide-card">
+          <h3>4 · Registra, no juzgues</h3>
+          <p>Anota qué notaste, aunque sea «nada». Los datos honestos —incluidos los nulos— son los que hacen útil una bitácora.</p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <h3>Seguridad</h3>
+          <ul class="check-list">
+            <li>No conduzcas ni operes maquinaria durante la sesión.</li>
+            <li>No lo uses si tienes epilepsia, tinnitus, vértigo, un marcapasos o antecedentes de crisis disociativas sin consultar antes.</li>
+            <li>Detén la sesión ante mareo, presión en los oídos, dolor de cabeza, palpitaciones o irritabilidad.</li>
+            <li>No es un tratamiento para ansiedad, insomnio ni ninguna condición médica.</li>
+            <li>No uses el modo «sueño» si necesitas permanecer despierto.</li>
+            <li>No induzcas estados en otra persona sin su consentimiento explícito. El laboratorio es para autoobservación, no para controlar a nadie.</li>
+            <li>El pulso de amplitud y los barridos pueden resultar más intensos: empieza con profundidad baja y sesiones cortas.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Preguntas frecuentes</h3>
+          <details>
+            <summary>¿Necesito crear una cuenta?</summary>
+            <p>No. No hay servidor ni base de datos. El sitio es HTML, CSS y JavaScript; tu bitácora vive en <code>localStorage</code>.</p>
+          </details>
+          <details>
+            <summary>¿Por qué el límite de 10 minutos?</summary>
+            <p>Es una decisión de diseño: sesiones cortas, repetibles y fáciles de registrar. Los protocolos largos no tienen más respaldo por durar más.</p>
+          </details>
+          <details>
+            <summary>¿Puedo crear mi propia frecuencia?</summary>
+            <p>Sí. El <a href="#laboratorio">laboratorio de ondas</a> permite fijar cada oído por separado (80–600 Hz), el batido (0–40 Hz), el barrido, la forma de onda, el balance, el pulso de amplitud, el tipo y nivel de ruido y los fundidos. Puedes guardar el ajuste o exportarlo en JSON.</p>
+          </details>
+          <details>
+            <summary>¿Qué es el modo estudio?</summary>
+            <p>Es un registro opcional con código de participante, grupo y medidas 0–10 antes/después. Sirve para comparar condiciones y exportar un CSV. No envía datos a ningún servidor y no sustituye un diseño experimental formal.</p>
+          </details>
+          <details>
+            <summary>¿Qué tiene que ver Grinberg con esto?</summary>
+            <p>La <a href="#estudio">Teoría Sintérgica</a> de Jacobo Grinberg se usa como marco metafórico para explorar atención, imaginería y autoobservación. Sus resultados sobre «transferencia de potencial» no están replicados de forma robusta; no los presentamos como evidencia.</p>
+          </details>
+          <details>
+            <summary>¿Se oye igual en todos los navegadores?</summary>
+            <p>La Web Audio API funciona en Chrome, Edge, Firefox, Safari y móviles modernos. En iOS requiere un toque para iniciar el audio, y el volumen del sistema manda.</p>
+          </details>
+          <details>
+            <summary>¿Dónde se publica gratis?</summary>
+            <p>Al ser archivos estáticos puedes subirlo a GitHub Pages, Netlify, Cloudflare Pages o abrirlo directamente desde el disco.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <strong>Onda Mental</strong>
+        <p>Un laboratorio casero de sonido y atención. Sin fines médicos.</p>
+      </div>
+      <p class="footer-note">
+        Hecho con Web Audio API. Datos y bitácora permanecen en tu dispositivo.
+        <a href="#evidencia">Ver evidencia</a>.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ================= SESIÓN EN CURSO ================= -->
+  <div class="session" id="session" role="dialog" aria-modal="true" aria-labelledby="sProtocol" hidden>
+    <div class="session-card">
+      <div class="session-top">
+        <span class="pill" id="sPhase">Inducción</span>
+        <button class="icon-btn" id="btnStopTop" type="button" aria-label="Cerrar sesión">✕</button>
+      </div>
+
+      <p class="session-protocol" id="sProtocol">Protocolo</p>
+
+      <div class="dial">
+        <svg viewBox="0 0 220 220" class="dial-svg" aria-hidden="true">
+          <circle class="dial-track" cx="110" cy="110" r="96"></circle>
+          <circle class="dial-progress" id="sProgress" cx="110" cy="110" r="96"></circle>
+        </svg>
+        <div class="dial-orb" id="sOrb" aria-hidden="true"></div>
+        <div class="dial-center">
+          <div class="dial-time" id="sTime">08:00</div>
+          <div class="dial-beat" id="sBeat">10.0 Hz</div>
+          <div class="dial-breath" id="sBreath">Inhala</div>
+        </div>
+      </div>
+
+      <p class="session-guide" id="sGuion"></p>
+
+      <div class="session-volume">
+        <label for="sVolume">Volumen</label>
+        <input type="range" id="sVolume" min="5" max="60" step="1" value="28">
+      </div>
+
+      <button class="btn btn-stop" id="btnStop" type="button">Detener sesión</button>
+      <p class="hint">Auriculares · volumen bajo · nunca mientras conduces.</p>
+    </div>
+  </div>
+
+  <!-- ================= REGISTRO POST-SESIÓN ================= -->
+  <div class="modal" id="journalDialog" role="dialog" aria-modal="true" aria-labelledby="jdTitle" hidden>
+    <form class="modal-card" id="journalForm">
+      <h3 id="jdTitle">Registra tu observación</h3>
+      <p class="modal-summary" id="jdSummary"></p>
+
+      <div class="control">
+        <label for="jdMood">¿Cómo te sientes ahora? <output id="jdMoodVal">5</output>/10</label>
+        <input type="range" id="jdMood" min="0" max="10" step="1" value="5">
+      </div>
+
+      <div id="jdStudyFields" hidden>
+        <h4 class="modal-subtitle">Medidas de estudio (después)</h4>
+        <div class="measure-grid" id="postMeasures"></div>
+      </div>
+
+      <div class="control">
+        <label for="jdNotes">Describe tu experiencia</label>
+        <textarea id="jdNotes" rows="5" maxlength="1200"
+          placeholder="Qué notaste en el cuerpo, qué pensamientos aparecieron, si el pulso se volvió más o menos evidente…"></textarea>
+      </div>
+
+      <label class="switch switch-small">
+        <input type="checkbox" id="jdCompleted" checked>
+        <span class="switch-ui" aria-hidden="true"></span>
+        <span>Completé la sesión</span>
+      </label>
+
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="jdSkip" type="button">Descartar</button>
+        <button class="btn btn-primary" type="submit">Guardar en bitácora</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/protocols.js?v=3" defer></script>
+  <script src="assets/audio.js?v=3" defer></script>
+  <script src="assets/app.js?v=3" defer></script>
+</body>
+</html>

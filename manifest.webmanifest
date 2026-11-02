@@ -1,0 +1,28 @@
+{
+  "name": "Onda Mental — laboratorio binaural",
+  "short_name": "Onda Mental",
+  "description": "Laboratorio binaural gratis con control por oído, barrido, pulso, ruido y modo estudio. Sesiones de 10 minutos o menos y bitácora local exportable.",
+  "lang": "es",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#05070d",
+  "theme_color": "#05070d",
+  "categories": ["health", "education", "music"],
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
