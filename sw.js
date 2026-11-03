@@ -3,14 +3,14 @@
    Solo se cachean peticiones GET del mismo origen. */
 'use strict';
 
-var CACHE = 'onda-mental-v3';
+var CACHE = 'onda-mental-v4';
 var CORE = [
   './',
   './index.html',
-  './assets/styles.css?v=3',
-  './assets/protocols.js?v=3',
-  './assets/audio.js?v=3',
-  './assets/app.js?v=3',
+  './assets/styles.css?v=4',
+  './assets/protocols.js?v=4',
+  './assets/audio.js?v=4',
+  './assets/app.js?v=4',
   './assets/icon.svg',
   './manifest.webmanifest'
 ];
