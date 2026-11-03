@@ -1,5 +1,7 @@
 # Onda Mental
 
+**Sitio publicado:** <https://cesarde2007-hub.github.io/onda-mental/>
+
 Laboratorio web de **sonidos binaurales para experimentos mentales**. Describe qué quieres
 explorar, el sitio propone un protocolo con referencias publicadas o te deja construir la onda
 desde cero, la reproduce durante **10 minutos o menos** y guarda tu experiencia en una bitácora
